@@ -54,20 +54,20 @@ function renderCard(cardData) {
     let abilityText = cardData.ability ? `<div class="card-ability">${cardData.ability}</div>` : '';
     let stats = cardData.type === 'Unit' ? `
         <div class="card-stats">
-            <span class="card-atk"><span class="math-inline">\{cardData\.atk\}</span\>
-            <span class="card-hp">{cardData.hp}</span>
-</div>` : '';
-return `
-        <div class="card" data-card-id="<span class="math-inline">\{cardData\.id\}" data\-card\-type\="</span>{cardData.type}">
+            <span class="card-atk">${cardData.atk}</span>
+            <span class="card-hp">${cardData.hp}</span>
+        </div>` : '';
+    return `
+        <div class="card" data-card-id="${cardData.id}" data-card-type="${cardData.type}">
             <div class="card-header">
-                <span class="card-name"><span class="math-inline">\{cardData\.name\}</span\>
-                <span class="card-cost">{cardData.cost}</span>
-</div>
-<div class="card-art"></div>
-${abilityText}
-${stats}
-</div>
-`;
+                <span class="card-name">${cardData.name}</span>
+                <span class="card-cost">${cardData.cost}</span>
+            </div>
+            <div class="card-art"></div>
+            ${abilityText}
+            ${stats}
+        </div>
+    `;
 }
 
 function renderGame() {
