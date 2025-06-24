@@ -1,0 +1,35 @@
+/* style.css */
+body { font-family: sans-serif; background-color: #2c3e50; color: white; }
+#game-board { display: flex; flex-direction: column; height: 100vh; }
+.player-area { flex: 1; display: flex; flex-direction: column; padding: 10px; }
+.lanes-container { display: flex; flex-grow: 1; gap: 10px; }
+.lane { flex: 1; background-color: rgba(0,0,0,0.2); border: 2px solid #7f8c8d; border-radius: 10px; min-height: 150px; }
+.hand-area { display: flex; justify-content: center; gap: 5px; min-height: 120px; padding: 5px; background-color: rgba(0,0,0,0.1); }
+.player-info { display: flex; align-items: center; gap: 20px; padding: 10px; }
+.center-line { text-align: center; padding: 5px; }
+#end-turn-button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+.active-player { border: 2px solid #f1c40f; }
+
+/* Card Styling */
+.card {
+    width: 80px;
+    height: 110px;
+    background-color: #34495e;
+    border: 2px solid #bdc3c7;
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 12px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover { transform: scale(1.1); box-shadow: 0 0 15px #f1c40f; }
+.card-header { display: flex; justify-content: space-between; font-weight: bold; }
+.card-name { font-size: 11px; }
+.card-cost { background-color: #2980b9; border-radius: 50%; width: 20px; height: 20px; text-align: center; line-height: 20px; }
+.card-art { flex-grow: 1; background-color: #7f8c8d; margin: 5px 0; }
+.card-stats { display: flex; justify-content: space-between; font-weight: bold; }
+.card-atk { color: #e74c3c; }
+.card-hp { color: #2ecc71; }
