@@ -254,5 +254,55 @@ function checkWinCondition() {
     }
 }
 
+function drawCard(player) {
+    const playerState = gameState.players[player];
+    if (playerState.deck.length > 0) {
+        const card = playerState.deck.shift();
+        playerState.hand.push(card);
+    } else {
+        console.log(`Player ${player} deck is empty!`);
+    }
+}
+
+function initializeGame() {
+    // Siapkan deck untuk kedua pemain (gunakan semua kartu di cardDatabase, duplikat seperlunya)
+    function createDeck() {
+        // Contoh: 2 kopi tiap kartu unit, 1 kopi tiap spell
+        let deck = [];
+        Object.entries(cardDatabase).forEach(([id, card]) => {
+            let count = card.type === 'Unit' ? 2 : 1;
+            for (let i = 0; i < count; i++) {
+                // Set id unik untuk tiap kartu di deck
+                deck.push({ ...card, id: id + '-' + i });
+            }
+        });
+        // Kocok deck
+        for (let i = deck.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [deck[i], deck[j]] = [deck[j], deck[i]];
+        }
+        return deck;
+    }
+    gameState.players[1].deck = createDeck();
+    gameState.players[2].deck = createDeck();
+    // Kosongkan hand, lanes, void
+    [1,2].forEach(p => {
+        gameState.players[p].hand = [];
+        gameState.players[p].lanes = [null, null, null];
+        gameState.players[p].void = [];
+        gameState.players[p].hp = 30;
+        gameState.players[p].essence = 1;
+        gameState.players[p].maxEssence = 1;
+    });
+    gameState.currentPlayer = 1;
+    gameState.turn = 1;
+    // Draw 3 kartu awal untuk tiap pemain
+    for (let i = 0; i < 3; i++) {
+        drawCard(1);
+        drawCard(2);
+    }
+    renderGame();
+}
+
 // game.js (di paling bawah)
 initializeGame();
